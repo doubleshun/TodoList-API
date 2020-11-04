@@ -1,0 +1,195 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "just test golang and swagger for fun",
+        "title": "testProject API.",
+        "contact": {
+            "name": "Doubleshun",
+            "url": "https://github.com/doubleshun"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "0.1"
+    },
+    "host": "localhost:8080",
+    "paths": {
+        "/api/todo": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Add todo to List",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.Todo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.ApiResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Update todo from List",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.Todo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/todo/{UserID}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Get all todo from List",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UserId",
+                        "name": "UserID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.ApiResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/todo/{UserID}/{ItemID}": {
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Delete todo from List",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UserId",
+                        "name": "UserID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "ItemId",
+                        "name": "ItemID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "controller.ApiResponse": {
+            "type": "object",
+            "properties": {
+                "ResultCode": {
+                    "type": "string",
+                    "example": "200"
+                },
+                "ResultMessage": {
+                    "type": "object"
+                }
+            }
+        },
+        "controller.Todo": {
+            "type": "object",
+            "properties": {
+                "Item": {
+                    "type": "string",
+                    "example": "test"
+                },
+                "ItemID": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "State": {
+                    "type": "string"
+                },
+                "UserID": {
+                    "type": "string",
+                    "example": "User-1"
+                }
+            }
+        }
+    }
+}
